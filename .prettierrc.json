@@ -1,0 +1,11 @@
+{
+  "overrides": [
+    {
+      "files": "*.ts",
+      "options": {
+        "parser": "typescript"
+      }
+    }
+  ],
+  "tabWidth": 4
+}
