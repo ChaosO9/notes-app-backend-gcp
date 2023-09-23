@@ -17,7 +17,7 @@ const routes_1 = require("./routes");
 function init() {
     return __awaiter(this, void 0, void 0, function* () {
         const server = hapi_1.default.server({
-            port: 3000,
+            port: 5000,
             host: "localhost",
             routes: {
                 cors: {
