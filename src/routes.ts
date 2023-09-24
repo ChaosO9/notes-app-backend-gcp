@@ -5,6 +5,7 @@ import {
     editNoteByIdHandler,
     getAllNotesHandler,
     getNoteByIdHandler,
+    homeNote,
 } from "./handler";
 
 export const routes: ServerRoute[] = [
@@ -32,5 +33,10 @@ export const routes: ServerRoute[] = [
         method: "DELETE",
         path: "/notes/{id}",
         handler: deleteNoteByIdHandler,
+    },
+    {
+        method: "GET",
+        path: "/",
+        handler: homeNote,
     },
 ];

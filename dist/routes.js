@@ -28,5 +28,10 @@ exports.routes = [
         path: "/notes/{id}",
         handler: handler_1.deleteNoteByIdHandler,
     },
+    {
+        method: "GET",
+        path: "/",
+        handler: handler_1.homeNote,
+    },
 ];
 //# sourceMappingURL=routes.js.map

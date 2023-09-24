@@ -156,3 +156,12 @@ export function deleteNoteByIdHandler(req: Request, res: ResponseToolkit) {
         .code(404);
     return response;
 }
+
+export function homeNote(req: Request, res: ResponseToolkit) {
+    return res
+        .response({
+            status: "success",
+            message: "It is home, nothing to see",
+        })
+        .code(200);
+}

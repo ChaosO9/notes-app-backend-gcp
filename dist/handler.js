@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteNoteByIdHandler = exports.editNoteByIdHandler = exports.getNoteByIdHandler = exports.getAllNotesHandler = exports.addNoteHandler = void 0;
+exports.homeNote = exports.deleteNoteByIdHandler = exports.editNoteByIdHandler = exports.getNoteByIdHandler = exports.getAllNotesHandler = exports.addNoteHandler = void 0;
 const nanoid_1 = require("nanoid");
 const notes_1 = require("./notes");
 function addNoteHandler(req, res) {
@@ -131,4 +131,13 @@ function deleteNoteByIdHandler(req, res) {
     return response;
 }
 exports.deleteNoteByIdHandler = deleteNoteByIdHandler;
+function homeNote(req, res) {
+    return res
+        .response({
+        status: "success",
+        message: "It is home, nothing to see",
+    })
+        .code(200);
+}
+exports.homeNote = homeNote;
 //# sourceMappingURL=handler.js.map
