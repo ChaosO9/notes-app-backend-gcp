@@ -4,7 +4,19 @@ exports.deleteNoteByIdHandler = exports.editNoteByIdHandler = exports.getNoteByI
 const nanoid_1 = require("nanoid");
 const notes_1 = require("./notes");
 function addNoteHandler(req, res) {
-    const { title, tags, body } = req.payload;
+    let payload = "";
+    if (typeof req.payload === "string") {
+        try {
+            payload = JSON.parse(req.payload);
+        }
+        catch (error) {
+            return;
+        }
+    }
+    else if (typeof req.payload === "object") {
+        payload = req.payload;
+    }
+    const { title, tags, body } = payload;
     const id = (0, nanoid_1.nanoid)(16);
     const createdAt = new Date().toString();
     const updatedAt = createdAt;
@@ -67,8 +79,12 @@ const getNoteByIdHandler = (req, res) => {
 };
 exports.getNoteByIdHandler = getNoteByIdHandler;
 function editNoteByIdHandler(req, res) {
+    let Payload = {};
     const { id } = req.params;
-    const { title, tags, body } = req.payload;
+    if (typeof req.payload === "object") {
+        Payload = req.payload;
+    }
+    const { title, tags, body } = Payload;
     const indexNote = notes_1.notes.findIndex((note) => note.id === id);
     const updatedAt = new Date().toISOString();
     if (indexNote !== -1) {

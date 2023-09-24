@@ -2,8 +2,26 @@ import { Request, ResponseToolkit } from "@hapi/hapi";
 import { nanoid } from "nanoid";
 import { notes } from "./notes";
 
+interface Payload {
+    title: string;
+    tags: string;
+    body: string;
+}
+
 export function addNoteHandler(req: Request, res: ResponseToolkit) {
-    const { title, tags, body } = req.payload;
+    let payload: Payload | string | object = "";
+
+    if (typeof req.payload === "string") {
+        try {
+            payload = JSON.parse(req.payload);
+        } catch (error) {
+            return;
+        }
+    } else if (typeof req.payload === "object") {
+        payload = req.payload;
+    }
+
+    const { title, tags, body } = payload as Payload;
 
     const id: string = nanoid(16);
     const createdAt = new Date().toString();
@@ -75,9 +93,14 @@ export const getNoteByIdHandler = (req: Request, res: ResponseToolkit) => {
 };
 
 export function editNoteByIdHandler(req: Request, res: ResponseToolkit) {
+    let Payload = {};
     const { id } = req.params;
-    const { title, tags, body } = req.payload;
 
+    if (typeof req.payload === "object") {
+        Payload = req.payload;
+    }
+
+    const { title, tags, body } = Payload as Payload;
     const indexNote = notes.findIndex((note) => note.id === id);
 
     const updatedAt = new Date().toISOString();
