@@ -85,7 +85,7 @@ export const getNoteByIdHandler = (req: Request, res: ResponseToolkit) => {
 
     const response = res
         .response({
-            status: "success",
+            status: "fail",
             message: "Catatan tidak ditemukan",
         })
         .code(404);
